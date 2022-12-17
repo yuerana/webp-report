@@ -1,9 +1,12 @@
 {
   "name": "react-tutorial",
   "version": "1.0.0",
+  "homepage":"https://yuerana.github.io/web-exercise3",
   "description": "",
   "main": "index.js",
   "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "build": "react-scripts build",
     "start": "react-scripts start"
   },
@@ -12,6 +15,7 @@
   "license": "ISC",
   "dependencies": {
     "bulma": "^0.9.4",
+    "gh-pages": "^4.0.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
