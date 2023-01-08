@@ -1,7 +1,7 @@
 import { useState } from "react";
 export async function fetchImages(breed) {
     const response = await fetch(
-      `http://acnhapi.com/v1/fish/${breed}`
+      `https://acnhapi.com/v1/fish/${breed}`
     );
     const data = await response.json();
     return data.image_uri;
