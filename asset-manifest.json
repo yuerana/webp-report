@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/webp-exercise3/static/css/main.53bcab0a.css",
+    "main.js": "/webp-exercise3/static/js/main.12c30216.js",
+    "index.html": "/webp-exercise3/index.html",
+    "main.53bcab0a.css.map": "/webp-exercise3/static/css/main.53bcab0a.css.map",
+    "main.12c30216.js.map": "/webp-exercise3/static/js/main.12c30216.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.53bcab0a.css",
+    "static/js/main.12c30216.js"
+  ]
+}
