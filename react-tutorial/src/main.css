@@ -1,0 +1,54 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+
+ul {
+    list-style-type: none;
+}
+
+a {
+    text-decoration: none;
+}
+
+header {
+    background-color: #dbbdbd;
+    padding: 20px;
+}
+
+header .head {
+    margin-left: 40px;
+}
+
+main {
+    padding: 40px;
+    height: 800px;
+    background-color: rgba(0, 0, 0, 0.082);
+}
+
+main .text {
+    margin: 20px 10px;
+    text-align: center;
+}
+
+main button {
+    padding: 3px 20px;
+}
+
+main .fact {
+    margin-top: 40px;
+    text-align: center;
+    font-size: 20px;
+}
+
+footer {
+    background-color: #eedfdf;
+}
+
+footer .foot {
+    padding: 20px;
+}
+
+footer .foot div {
+    margin: 5px 0;
+}
