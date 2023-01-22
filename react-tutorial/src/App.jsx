@@ -1,82 +1,88 @@
-import { useState } from "react";
-export async function fetchImages(breed) {
-    const response = await fetch(
-      `https://acnhapi.com/v1/fish/${breed}`
-    );
-    const data = await response.json();
-    return data.image_uri;
-}
+import { useEffect, useState } from "react";
+import { catFacts } from "./api";
+import { translate } from "./api";
+import { catImg } from "./api";
+
 
 function Header() {
     return (
-        <header className="hero is-primary">
-            <div className="hero-body">
-                <div className="container">
-                    <h1 className="title">日本大学文理学部情報科学科 Webプログラミングの演習課題</h1>
-                    <h5>5421057 朱劼</h5>
-                </div>
+        <header>
+            <div className="head">
+                    <h1 className="title">cat things</h1>
             </div>
         </header>
     );
 }
-  
-function Image(props) {
-    return (
-            <div className="column">
-                <img src={props.src} alt="animal crossing" />
-            </div>
-    );
-}
 
-function Loading() {
-    return <p>Loading...</p>;
-}
+function TranslatedFact(props) {
+    let { text } = props;
+    let [translatedText, setTexts] = useState("");
 
-function Gallery(props) {
-    const { urls } = props;
-    if (urls == null) {
-        return <Loading />;
-    }
+    translate(text).then((translated) => {
+        setTexts(translated);
+    })
+
     return (
-        <div className="columns is-vcentered is-multiline">
-                    <div key={urls} className="column is-3">
-                        <Image src={urls} />
-                    </div>
-        </div>
-    );
+        <div className="fact"> {translatedText}</div>
+    )
 }
 
 function Main() {
-    const [urls, setUrls] = useState(null);
-    fetchImages("coelacanth").then((urls) => {
-        setUrls(urls);
-    });
+    let [text, setTexts] = useState("");
+    let [url, setUrl] = useState("");
+
+    useEffect(() => {
+        catFacts().then((facts) => {
+            setTexts(facts);
+        })
+        catImg().then((img) => {
+            setUrl(img);
+        })
+    }, [])
+
+    function reload() {
+        catFacts().then((facts) => {
+            setTexts(facts);
+        })
+    }
+    
     return (
         <main>
-            <div className="box">
-            <p className="is-full">本ページは Webプログラミングの演習課題であり,reactを用いてACNH APIからデータを取得する.</p>
+            <div className="text">
+                猫が好きなお方にどうぞ
             </div>
-            <div className="box">
-                <Gallery urls={urls}/>
-                <p>シーラカンス</p>
+            <div className="text"> クリックして猫の情報を更新しよう. </div>
+            <div className="text">
+                <form onSubmit={reload}>
+                    <button>get</button>
+                </form>
             </div>
-        </main>
-    );
+            <div className="text">
+                <img src={url} alt="" width="400px" />
+            </div>
+            <TranslatedFact text={text}/>
+    </main>
+    )
 }
-  
+
 function Footer() {
     return (
-        <footer className="footer">
-            <div className="content has-text-centered">
-                <p>All the data comes from ACNH. <a href="https://github.com/alexislours/ACNHAPI">More data about ACNH</a></p>
-                <p>
-                    <a href="https://acnhapi.com/">ACNH API</a>
-                </p>
+        <footer>
+            <div className="foot">
+                <div>cat's picture comes from
+                    <a href="https://cataas.com/#/"> CATAAS</a>
+                </div>
+                <div>cat's facts comes form
+                    <a href="https://github.com/wh-iterabb-it/meowfacts"> meowfacts</a>
+                </div>
+                <div>translate API : 
+                    <a href="https://qiita.com/satto_sann/items/be4177360a0bc3691fdf">Google翻訳APIを無料で作る方法</a>
+                </div>
             </div>
         </footer>
-    );
+    )
 }
-  
+
 function App() {
     return (
         <div>
@@ -87,5 +93,4 @@ function App() {
     );
 }
 
-  
 export default App;
